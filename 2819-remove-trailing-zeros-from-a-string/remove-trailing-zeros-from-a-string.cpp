@@ -1,11 +1,10 @@
 class Solution {
 public:
     string removeTrailingZeros(string num) {
-        for(int i = num.size() - 1; i >= 0; i--) {
-            if(num[i] != '0') {
-                break;  
-            }
-            num.pop_back();  
+        int n=num.size();
+        while (num.back() == '0') {
+            num.replace(n-1,1,"");
+            n--;
         }
         return num;
     }
