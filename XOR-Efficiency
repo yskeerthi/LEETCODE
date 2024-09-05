@@ -1,0 +1,76 @@
+XOR (exclusive OR) is a powerful bitwise operation often used in problem-solving. Here are some key points and conditions where XOR is typically used:
+
+### Key Characteristics of XOR:
+1. **Basic Properties:**
+   - \( a \oplus a = 0 \) (XORing a number with itself results in 0)
+   - \( a \oplus 0 = a \) (XORing a number with 0 results in the number itself)
+   - \( a \oplus b = b \oplus a \) (XOR is commutative)
+   - \( (a \oplus b) \oplus c = a \oplus (b \oplus c) \) (XOR is associative)
+  
+2. **Swapping Two Variables Without Temporary Variable:**
+   - \( a = a \oplus b \)
+   - \( b = a \oplus b \) (now \( b \) holds the original value of \( a \))
+   - \( a = a \oplus b \) (now \( a \) holds the original value of \( b \))
+
+3. **Canceling Out Duplicate Numbers:**
+   XOR is commonly used when every number appears twice except for one (or two), as XOR will cancel out duplicate numbers due to the property \( a \oplus a = 0 \).
+
+### Conditions and Applications for Using XOR:
+
+1. **Finding the Unique Element in an Array:**
+   - **Problem:** In an array where every element appears twice except one, find the unique element.
+   - **Approach:** XOR all the elements together. Since \( a \oplus a = 0 \), all paired elements will cancel out, leaving only the unique element.
+   - **Example:**
+     ```cpp
+     int findUnique(vector<int>& nums) {
+         int result = 0;
+         for (int num : nums) {
+             result ^= num;
+         }
+         return result;
+     }
+     ```
+   
+2. **Finding Two Unique Elements in an Array:**
+   - **Problem:** In an array where every element appears twice except for two unique elements, find those two elements.
+   - **Approach:** XOR all the elements together. The result will be the XOR of the two unique elements (since duplicates will cancel out). Then, use the rightmost set bit to divide the numbers into two groups and find the two unique numbers.
+   - **Key Point:** XOR isolates the differing bits between two numbers.
+
+3. **Finding Missing Number:**
+   - **Problem:** Find the missing number in a sequence from \(1\) to \(n\) in an array of size \(n-1\).
+   - **Approach:** XOR all the numbers from \(1\) to \(n\) and XOR that result with all the elements of the array. The missing number will remain.
+   - **Example:**
+     ```cpp
+     int findMissing(vector<int>& nums) {
+         int n = nums.size();
+         int totalXOR = 0, numsXOR = 0;
+         for (int i = 1; i <= n + 1; ++i) totalXOR ^= i;
+         for (int num : nums) numsXOR ^= num;
+         return totalXOR ^ numsXOR;
+     }
+     ```
+
+4. **Swapping Two Numbers Without Temporary Variable:**
+   - **Approach:**
+     ```cpp
+     a = a ^ b;
+     b = a ^ b;
+     a = a ^ b;
+     ```
+
+5. **Subset XOR Problems:**
+   - XOR is often used in problems involving subsets where the goal is to find the XOR of all subsets or certain groups. This leverages XOR's properties in efficiently combining or breaking down subsets.
+
+6. **Encryption/Decryption (Basic XOR Cipher):**
+   - XOR is used in simple cryptography for encrypting and decrypting data. XOR the data with a key to encrypt, and XOR again with the same key to decrypt.
+
+7. **Parity Check (Bit Manipulation):**
+   - XOR is used in error detection algorithms (like CRC) to compute parity bits or detect changes in data.
+
+### Key Points to Remember:
+- XOR is **self-inverse**: Applying XOR with the same value twice restores the original value.
+- XOR **cancels out** duplicate numbers: This is helpful in problems with pairs or when identifying unique elements.
+- XOR **does not rely on carry** like addition or subtraction, making it efficient in certain bitwise operations.
+- XOR helps to **divide and conquer** problems involving two differing elements by isolating bits where numbers differ.
+
+Would you like an example problem to practice using XOR?
