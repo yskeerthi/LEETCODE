@@ -1,17 +1,39 @@
 class Solution {
 public:
     int thirdMax(vector<int>& nums) {
-        // Use a set to store unique elements and automatically sort them
-        set<int> val(nums.begin(), nums.end());
-        
-        // If the set has less than 3 elements, return the maximum (last element)
-        if (val.size() < 3) {
-            return *val.rbegin();  // Access the largest element
+        map<int,int>mp;
+        for(auto i :nums)
+        {
+            mp[i]++;
         }
+        map<int,int>::iterator it;
+        int cnt=0;
+        int res;
+        if(mp.size()<3)
+        {
+            auto it2=mp.rbegin();
+            return it2->first;
 
-        // Otherwise, return the third maximum
-        auto it = val.rbegin(); // Reverse iterator to start from the largest
-        advance(it, 2);  // Move iterator to the third largest element
-        return *it;
+        }
+        
+        for(auto it=mp.rbegin();it!=mp.rend();it++)
+        {
+            
+            if(cnt!=2)
+            {
+                
+                cnt++;
+            }
+            else
+            {
+                res=it->first;
+                break;
+                
+                
+            }
+      
+        }
+        
+        return res;
     }
 };
