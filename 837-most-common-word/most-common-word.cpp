@@ -16,7 +16,7 @@ public:
         while(ss >> str){
             if(find(banned.begin(), banned.end(), str) == banned.end()){
                 map[str]++;
-                if(map[str] >= maxf){
+                if(map[str] > maxf){
                     maxf = map[str];
                     res = str;
                 } 
