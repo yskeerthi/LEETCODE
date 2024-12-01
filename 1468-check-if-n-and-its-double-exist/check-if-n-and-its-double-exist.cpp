@@ -1,21 +1,25 @@
 class Solution {
 public:
     bool checkIfExist(vector<int>& arr) {
-        sort(arr.begin(),arr.end());
-        // Here we use binary search algo
-        for(int i=0;i<arr.size();i++){ 
-            int s = 0, e = arr.size()-1;
-            int target = 2*arr[i];
-            while(s<=e){
-                int mid = s+(e-s)/2;
-                if((arr[mid]==target) && (i!=mid))return true;
-                else if(arr[mid] > target){
-                    e = mid-1;
+        int zeroCount = 0;
+        for (int num : arr) {
+            if (num == 0) {
+                zeroCount++;
+            }
+        }
+        if (zeroCount >= 2) {
+            return true;
+        }
+
+        for (int i = 0; i < arr.size(); i++) {
+            for (int j = 0; j < arr.size(); j++) {
+                if (i != j) {
+                    if (arr[j] == 2 * arr[i] || (arr[i] % 2 == 0 && arr[j] == arr[i] / 2)) {
+                        return true;
+                    }
                 }
-                else   
-                    s = mid+1;
             }
         }
         return false;
     }
-}; 
+};
