@@ -1,16 +1,15 @@
 class Solution {
 public:
     int kthSmallest(vector<vector<int>>& matrix, int k) {
-        int j;
-        vector<long long int>vec;
-        for(const auto& i:matrix)
+        vector<int>vec;
+        for(int i=0;i<matrix.size();i++)
         {
-            for(const auto& j:i)
+            for(int j=0;j<matrix[0].size();j++)
             {
-                vec.push_back(j);
+                vec.push_back(matrix[i][j]);
             }
+            sort(vec.begin(),vec.end());
         }
-        sort(vec.begin(),vec.end());
         return vec[k-1];
     }
 };
